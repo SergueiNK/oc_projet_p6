@@ -18,15 +18,15 @@ CREATE DATABASE `OCPizza`;
 USE `OCPizza` ;
 
 -- -----------------------------------------------------
--- Table `OCPizza`.`adresse`
+-- Table `OCPizza`.`address`
 -- -----------------------------------------------------
-CREATE TABLE Adresse (
-  `id_adresse` INT NOT NULL,
+CREATE TABLE Address (
+  `id_address` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(100) NULL,
   `street_number` BIGINT(50) NULL,
   `city_name` VARCHAR(50) NULL,
   `zip_code` BIGINT(50) NULL,
-  PRIMARY KEY (`id_adresse`))
+  PRIMARY KEY (`id_address`))
 ENGINE = InnoDB;
 
 
@@ -34,18 +34,18 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`customer`
 -- -----------------------------------------------------
 CREATE TABLE Customer (
-  `id_customer` BIGINT(50) NOT NULL,
+  `id_customer` BIGINT(50) NOT NULL AUTO_INCREMENT,
   `customer_name` VARCHAR(100) NULL,
   `customer_firstname` VARCHAR(100) NULL,
   `email` VARCHAR(100) NULL,
   `phone_number` VARCHAR(50) NULL,
   `customer_login` VARCHAR(50) NULL,
   `customer_password` VARCHAR(50) NULL,
-  `id_adresse_fk` INT NULL,
+  `id_address_fk` INT NULL,
   PRIMARY KEY (`id_customer`),
-  CONSTRAINT `id_adresse_fk`
-    FOREIGN KEY (`id_adresse_fk`)
-    REFERENCES `Adresse` (`id_adresse`)
+  CONSTRAINT `id_address_fk`
+    FOREIGN KEY (`id_address_fk`)
+    REFERENCES `Address` (`id_address`)
 	)
 ENGINE = InnoDB;
 
@@ -54,7 +54,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`pizza`
 -- -----------------------------------------------------
 CREATE TABLE `Pizza` (
-  `id_pizza` BIGINT(50) NOT NULL,
+  `id_pizza` BIGINT(50) NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(200) NULL,
   `pizza_price` VARCHAR(50) NULL,
   `pizza_name` VARCHAR(100) NULL,
@@ -63,9 +63,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `OCPizza`.`order`
+-- Table `OCPizza`.`Customer_order`
 -- -----------------------------------------------------
-CREATE TABLE `Order` (
+CREATE TABLE `Customer_order` (
   `id_order` BIGINT(50) NOT NULL AUTO_INCREMENT,
   `id_customer_fk` BIGINT(50) NOT NULL,
   `id_pizza_fk` BIGINT(50) NOT NULL,
@@ -74,16 +74,14 @@ CREATE TABLE `Order` (
   `date` DATETIME NULL,
   `delivery_mode` VARCHAR(50) NULL,
   `pizza_quantity` INT NULL,
-  `id_adresse_fk` INT NULL,
+  `id_address_fk` INT NULL,
   PRIMARY KEY (`id_order`, `id_customer_fk`, `id_pizza_fk`),
     FOREIGN KEY (`id_customer_fk`)
     REFERENCES `Customer` (`id_customer`),
-	
     FOREIGN KEY (`id_pizza_fk`)
-    REFERENCES `Pizza` (`id_pizza`),
-	
-    FOREIGN KEY (`id_adresse_fk`)
-    REFERENCES `Adresse` (`id_adresse`)
+    REFERENCES `Pizza` (`id_pizza`),	
+    FOREIGN KEY (`id_address_fk`)
+    REFERENCES `Address` (`id_address`)
 )
 ENGINE = InnoDB;
 
@@ -94,10 +92,9 @@ ENGINE = InnoDB;
 CREATE TABLE `Ingredient` (
   `id_ingredient` BIGINT(50) NOT NULL AUTO_INCREMENT,
   `ingredient_name` VARCHAR(100) NULL,
-  `ingredient_inventory_kg` VARCHAR(50) NULL,
-  PRIMARY KEY (`id_ingredient`),
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION)
+  `ingredient_inventory` VARCHAR(50) NULL,
+  `unit_ingredient` VARCHAR(20) NULL,
+  PRIMARY KEY (`id_ingredient`))
 ENGINE = InnoDB;
 
 
@@ -108,8 +105,9 @@ CREATE TABLE `Recipe` (
   `id_recipe` BIGINT(50) NOT NULL AUTO_INCREMENT,
   `id_pizza_fk` BIGINT(50) NOT NULL,
   `id_ingredient_fk` BIGINT(50) NOT NULL,
-  `cooking_time_sec` VARCHAR(50) NULL,
-  `ingredient_quantity_g` VARCHAR(100) NULL,
+  `cooking_time` VARCHAR(50) NULL,
+  `ingredient_quantity` VARCHAR(100) NULL,
+  `unit_recipe` VARCHAR(20) NULL,
   PRIMARY KEY (`id_recipe`, `id_pizza_fk`, `id_ingredient_fk`),
   CONSTRAINT `id_pizza_fk`
     FOREIGN KEY (`id_pizza_fk`)
@@ -126,15 +124,14 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`employee`
 -- -----------------------------------------------------
 CREATE TABLE `Employee` (
-  `id_employee_number` INT NOT NULL,
+  `id_employee_number` INT NOT NULL AUTO_INCREMENT,
   `employee_name` VARCHAR(50) NULL,
   `employee_firstname` VARCHAR(50) NULL,
-  `id_adresse_fkk` INT NULL,
-  PRIMARY KEY (`id_employee_number`),
-  
-  CONSTRAINT `id_adresse_fkk`
-    FOREIGN KEY (`id_adresse_fkk`)
-    REFERENCES `Adresse` (`id_adresse`)
+  `id_address_fkk` INT NULL,
+  PRIMARY KEY (`id_employee_number`),  
+  CONSTRAINT `id_address_fkk`
+    FOREIGN KEY (`id_address_fkk`)
+    REFERENCES `Address` (`id_address`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -144,7 +141,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`role`
 -- -----------------------------------------------------
 CREATE TABLE `Role` (
-  `id_role` INT NOT NULL,
+  `id_role` INT NOT NULL AUTO_INCREMENT,
   `employee_role` VARCHAR(50) NULL,
   `id_employee_fk` INT NULL,
   PRIMARY KEY (`id_role`),
@@ -160,14 +157,14 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`restaurant`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Restaurant` (
-  `id_restaurant_number` INT NOT NULL,
+  `id_restaurant_number` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NULL,
-  `id_adresse_fk` INT NULL,
+  `id_address_fk` INT NULL,
   `id_role_fk` INT NULL,
   PRIMARY KEY (`id_restaurant_number`),
-  CONSTRAINT `id_adresse_fk`
-    FOREIGN KEY (`id_adresse_fk`)
-    REFERENCES `Adresse` (`id_adresse`)
+
+    FOREIGN KEY (`id_address_fk`)
+    REFERENCES `Address` (`id_address`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `id_role_fk`

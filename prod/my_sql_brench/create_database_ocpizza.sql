@@ -21,7 +21,7 @@ USE `OCPizza` ;
 -- Table `OCPizza`.`adresse`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `OCPizza`.`adresse` (
-  `id_adresse` INT NOT NULL,
+  `id_addresse` INT NOT NULL,
   `street` VARCHAR(100) NULL,
   `street_number` BIGINT(50) NULL,
   `city_name` VARCHAR(50) NULL,

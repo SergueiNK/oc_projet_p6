@@ -13,34 +13,35 @@ class GenerateFakeData:
 
         for _ in range(data_number):
             print(
-                f"INSERT INTO \"Address\" (id, street_number, street, city_name, zip_code,) "
-                f"VALUES (default, '{randrange(1, 17)}', '{self.fake.street_address()}','{self.fake.city()}', ';'"
+                f"INSERT INTO Address (id_address, street_number, street, city_name, zip_code) "
+                f"VALUES (default, '{randrange(1, 17)}', '{self.fake.street_name()}', '{self.fake.city()}', '{randrange(40000, 49999)}');"
             )
 
     def fake_restaurant(self):
         print(
-            f"INSERT INTO \"Restaurant\" (id, name) VALUES "
+            f"INSERT INTO Restaurant (id_restaurant_number, name) VALUES "
             f"(default, 'Pizzaria Alfredo');"
         )
         print(
-            f"INSERT INTO \"Restaurant\" (id, name) VALUES "
+            f"INSERT INTO Restaurant (id, name) VALUES "
             f"(default, 'Pizzaria Tatie');"
         )
         print(
-            f"INSERT INTO \"Restaurant\" (id, name) VALUES "
-            f"(default, 'Pizzaria Ovnie');")
+            f"INSERT INTO Restaurant (id, name) VALUES "
+            f"(default, 'Pizzaria Ovnie');"
+        )
 
     def fake_role(self):
         print(
-            f"INSERT INTO \"Role\" (id, employee_role) VALUES "
+            f"INSERT INTO Role (id_role, employee_role) VALUES "
             f"(default, 'Directeur');"
         )
         print(
-            f"INSERT INTO \"Role\" (id, employee_role) VALUES "
+            f"INSERT INTO Role (id_role, employee_role) VALUES "
             f"(default, 'Livreur');"
         )
         print(
-            f"INSERT INTO \"Role\" (id, employee_role) VALUES "
+            f"INSERT INTO Role (id_role, employee_role) VALUES "
             f"(default, 'Preparateur');"
         )
 
@@ -48,7 +49,7 @@ class GenerateFakeData:
 
         for _ in range(data_number):
             print(
-                f"INSERT INTO \"Employee\" (id, employee_name, employee_last_name, employee_password) "
+                f"INSERT INTO Employee (id_employee_number, employee_name, employee_last_name, employee_password) "
                 f"VALUES (default, '{self.fake.name()}', "
                 f"'{self.fake.last_name()}', "
                 f"'{self.fake.password(40)}');"
@@ -58,59 +59,47 @@ class GenerateFakeData:
 
         for _ in range(data_number):
             print(
-                f"INSERT INTO \"Customer\" "
-                f"(id, customer_name, customer_firstname, email, phone_number, customer_login, customer_password) "
+                f"INSERT INTO Customer"
+                f"(id_customer, customer_name, customer_firstname, email, phone_number, customer_login, customer_password) "
                 f"VALUES (default, '{self.fake.first_name()}', '{self.fake.last_name()}', "
-                f"'{self.fake.email()}', '{self.fake.phone_number()}', '{self.fake.name()}', '{self.fake.password(40)}' );"
+                f"'{self.fake.email()}', '{self.fake.phone_number()}', '{self.fake.name()}', '{self.fake.password(40)}');"
             )
 
 
-    def fake_order(self, data_number=3):
+    def fake_customer_order(self, data_number=3):
 
 
 
         print(
-            f"INSERT INTO \"Order\" (id, status) VALUES (default, 'En cours de préparation');"
+            f"INSERT INTO Customer_order (id_order, status, payement_method) "
+            f"VALUES (default, 'En cours de préparation', 'Carte bancaire');"
         )
         print(
-            f"INSERT INTO \"Order\" (id, status) VALUES (default, 'En livraison');"
+            f"INSERT INTO Customer_order (id_order, status, payement_method) "
+            f"VALUES (default, 'En livraison', 'Espéces');"
         )
         print(
-            f"INSERT INTO \"Order\" (id, status) VALUES (default, 'Livré');")
-
-
-        print(
-            f"INSERT INTO \"Order\" (id, payement_method) VALUES (default, 'Carte bancaire');"
-        )
-        print(
-            f"INSERT INTO \"Order\" (id, payement_method) VALUES (default, 'Espéces');"
-        )
-        print(
-            f"INSERT INTO \"Order\" (id, payement_method) VALUES (default, 'Tickets restaurants');")
-
-
-
-        for _ in range(data_number):
-            print(
-                f"INSERT INTO \"Order\" "
-                f"(id, date) "
-                f"VALUES (default, '{self.fake.date()}');"
-            )
-
-        print(
-            f"INSERT INTO \"Order\" (id, delivery_mode) VALUES (default, 'Chez le client');"
-        )
-        print(
-            f"INSERT INTO \"Order\" (id, delivery_mode) VALUES (default, 'Retrait en pizzeria');"
+            f"INSERT INTO Customer_order (id_order, status, payement_method) "
+            f"VALUES (default, 'Livré', 'Tickets restaurants');"
         )
 
 
         for _ in range(data_number):
             print(
-                f"INSERT INTO \"Order\" "
-                f"(id, pizza_quantity) "
-                f"VALUES (default, '{randrange(1,17)}');"
+                f"INSERT INTO Customer_order "
+                f"(id_order, date, pizza_quantity) "
+                f"VALUES (default, '{self.fake.date()}', '{randrange(1,17)}');"
             )
+
+        print(
+            f"INSERT INTO Customer_order (id_order, delivery_mode) "
+            f"VALUES (default, 'Chez le client');"
+        )
+        print(
+            f"INSERT INTO Customer_order (id_order, delivery_mode) "
+            f"VALUES (default, 'Retrait en pizzeria');"
+        )
+
 
         # for _ in range(data_number):
         #     print(
@@ -123,17 +112,22 @@ class GenerateFakeData:
 
         for _ in range(data_number):
             print(
-                f"INSERT INTO \"Pizza\" (id, description, pizza_price) VALUES (default, '{self.fake.paragraph(nb_sentences=1)}', '{randrange(8,14)}');"
+                f"INSERT INTO Pizza (id_pizza, description, pizza_price) "
+                f"VALUES (default, '{self.fake.paragraph(nb_sentences=1)}', "
+                f"'{randrange(8,14)}');"
             )
 
         print(
-            f"INSERT INTO \"Pizza\" (id, pizza_name) VALUES (default, 'Margarita');"
+            f"INSERT INTO Pizza (id, pizza_name) "
+            f"VALUES (default, 'Margarita');"
         )
         print(
-            f"INSERT INTO \"Pizza\" (id, pizza_name) VALUES (default, 'Nordique');"
+            f"INSERT INTO Pizza (id, pizza_name) "
+            f"VALUES (default, 'Nordique');"
         )
         print(
-            f"INSERT INTO \"Pizza\" (id, pizza_name) VALUES (default, 'Végétarienne');"
+            f"INSERT INTO Pizza (id, pizza_name) "
+            f"VALUES (default, 'Végétarienne');"
         )
 
     def fake_recipe(self, data_number=3):
@@ -141,25 +135,40 @@ class GenerateFakeData:
 
         for _ in range(data_number):
             print(
-                f"INSERT INTO \"Recipe\" (id, cooking_time_sec, ingredient_quantity_g) VALUES (default, '{randrange(360,600)}', '{randrange(50,150)}' );"
+                f"INSERT INTO Recipe (id_recipe, cooking_time, ingredient_quantity) VALUES (default, '{randrange(360,600)}', '{randrange(50,150)}' );"
             )
+
+        print(
+            f"INSERT INTO Recipe (id_recipe, unit_recipe) VALUES (default, 'Killogrammes');"
+        )
+        print(
+            f"INSERT INTO Recipe (id_recipe, unit_recipe) VALUES (default, 'Grammes');"
+        )
+        print(
+            f"INSERT INTO Recipe (id_recipe, unit_recipe) VALUES (default, 'Litres');"
+        )
 
     def fake_ingredient(self, data_number=3):
 
-        for _ in range(data_number):
-            print(
-                f"INSERT INTO \"Ingredient\" (id, ingredient_inventory_kg) VALUES (default, '{randrange(0,50)}' );"
-            )
+
 
         print(
-            f"INSERT INTO \"Ingredient\" (id, ingredient_name) VALUES (default, 'Poulet');"
+            f"INSERT INTO Ingredient (id_ingredient, ingredient_name, unit_ingredient) "
+            f"VALUES (default, 'Poulet', 'Killogrammes');"
         )
         print(
-            f"INSERT INTO \"Ingredient\" (id, ingredient_name) VALUES (default, 'Haricots');"
+            f"INSERT INTO Ingredient (id_ingredient, ingredient_name, unit_ingredient) "
+            f"VALUES (default, 'Haricots', 'Grammes');"
         )
         print(
-            f"INSERT INTO \"Ingredient\" (id, ingredient_name) VALUES (default, 'Caviar');"
+            f"INSERT INTO Ingredient (id_ingredient, ingredient_name, unit_ingredient) "
+            f"VALUES (default, 'Caviar', 'Litres');"
         )
+
+        for _ in range(data_number):
+            print(
+                f"INSERT INTO \"Ingredient\" (id, ingredient_inventory) VALUES (default, '{randrange(0,50)}' );"
+            )
 
 
 if __name__ == "__main__":
@@ -177,7 +186,7 @@ if __name__ == "__main__":
     print()
     generate_data.fake_customer()
     print()
-    generate_data.fake_order()
+    generate_data.fake_customer_order()
     print()
     generate_data.fake_pizza()
     print()

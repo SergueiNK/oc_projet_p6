@@ -4,3 +4,4 @@ mysql -u serguei -p
 
 Acces for launch the sql script 
 SOURCE C:/Users/Serjio/OCPython/oc_projet_p6/prod/my_sql_brench/create_database_ocpizza
+SOURCE C:/Users/Serjio/OCPython/oc_projet_p6/prod/my_sql_brench/test_sql_2.sql
