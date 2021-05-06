@@ -21,7 +21,7 @@ USE `OCPizza` ;
 -- Table `OCPizza`.`address`
 -- -----------------------------------------------------
 CREATE TABLE Address (
-  `id_address` INT NOT NULL AUTO_INCREMENT,
+  `id_address` INT NOT NULL ,
   `street` VARCHAR(100) NULL,
   `street_number` INT NULL,
   `city_name` VARCHAR(50) NULL,
@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`customer`
 -- -----------------------------------------------------
 CREATE TABLE Customer (
-  `id_customer` INT NOT NULL AUTO_INCREMENT,
+  `id_customer` INT NOT NULL ,
   `customer_name` VARCHAR(100) NULL,
   `customer_firstname` VARCHAR(100) NULL,
   `email` VARCHAR(500) NULL,
@@ -67,7 +67,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`Customer_order`
 -- -----------------------------------------------------
 CREATE TABLE `Customer_order` (
-  `id_order` INT NOT NULL AUTO_INCREMENT,
+  `id_order` INT NOT NULL ,
   `id_customer_order_fk` INT NOT NULL,
   `pizza_name_order_fk` VARCHAR(50) NOT NULL,
   `status` VARCHAR(50) NULL,
@@ -112,7 +112,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`recipe`
 -- -----------------------------------------------------
 CREATE TABLE `Recipe` (
-  `id_recipe` INT NOT NULL AUTO_INCREMENT,
+  `id_recipe` INT NOT NULL ,
   `pizza_name_recipe_fk` VARCHAR(50) NOT NULL,
   `ingredient_name_fk` VARCHAR(50) NOT NULL,
   `cooking_time` VARCHAR(50) NULL,
@@ -136,7 +136,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`employee`
 -- -----------------------------------------------------
 CREATE TABLE `Employee` (
-  `id_employee_number` INT NOT NULL AUTO_INCREMENT,
+  `id_employee_number` INT NOT NULL ,
   `employee_name` VARCHAR(50) NULL,
   `employee_firstname` VARCHAR(50) NULL,
   `employee_password` VARCHAR(50) NULL,
@@ -154,7 +154,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`role`
 -- -----------------------------------------------------
 CREATE TABLE `Role` (
-  `id_role` INT NOT NULL AUTO_INCREMENT,
+  `id_role` INT NOT NULL ,
   `employee_role` VARCHAR(50) NULL,
   `id_employee_fk` INT NOT NULL,
   PRIMARY KEY (`id_role`),
@@ -170,7 +170,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`restaurant`
 -- -----------------------------------------------------
 CREATE TABLE `Restaurant` (
-  `id_restaurant_number` INT NOT NULL AUTO_INCREMENT,
+  `id_restaurant_number` INT NOT NULL ,
   `name` VARCHAR(50) NULL,
   `id_address_restaurant_fk` INT NOT NULL,
   `id_role_restaurant_fk` INT NOT NULL,
