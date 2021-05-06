@@ -1,0 +1,13 @@
+// Liaisons des tables
+// FK et PK
+{
+  "pizza": [
+    {
+      "pizza_name":""
+    },
+    {
+
+    }
+  ],
+  "customer"....
+}
