@@ -21,7 +21,7 @@ USE `OCPizza` ;
 -- Table `OCPizza`.`address`
 -- -----------------------------------------------------
 CREATE TABLE Address (
-  `id_address` INT NOT NULL ,
+  `id_address` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(100) NULL,
   `street_number` INT NULL,
   `city_name` VARCHAR(50) NULL,
@@ -34,10 +34,10 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`customer`
 -- -----------------------------------------------------
 CREATE TABLE Customer (
-  `id_customer` INT NOT NULL ,
+  `id_customer` INT NOT NULL AUTO_INCREMENT,
   `customer_name` VARCHAR(100) NULL,
   `customer_firstname` VARCHAR(100) NULL,
-  `email` VARCHAR(500) NULL,
+  `email` VARCHAR(100) NULL,
   `phone_number` VARCHAR(50) NULL,
   `customer_login` VARCHAR(50) NULL,
   `customer_password` VARCHAR(100) NULL,
@@ -67,7 +67,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`Customer_order`
 -- -----------------------------------------------------
 CREATE TABLE `Customer_order` (
-  `id_order` INT NOT NULL ,
+  `id_order` INT NOT NULL AUTO_INCREMENT,
   `id_customer_order_fk` INT NOT NULL,
   `pizza_name_order_fk` VARCHAR(50) NOT NULL,
   `status` VARCHAR(50) NULL,
@@ -136,7 +136,7 @@ ENGINE = InnoDB;
 -- Table `OCPizza`.`employee`
 -- -----------------------------------------------------
 CREATE TABLE `Employee` (
-  `id_employee_number` INT NOT NULL ,
+  `id_employee_number` INT NOT NULL AUTO_INCREMENT,
   `employee_name` VARCHAR(50) NULL,
   `employee_firstname` VARCHAR(50) NULL,
   `employee_password` VARCHAR(50) NULL,
