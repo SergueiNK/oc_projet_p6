@@ -43,7 +43,6 @@ data = {
     {
       "id_order": "1",
       "id_customer_order_fk": "1",
-      "pizza_name_order_fk": "Margarita",
       "status": "En cours de préparation",
       "payement_method": "Carte bancaire",
       "delivery_mode": "Chez le client",
@@ -52,7 +51,6 @@ data = {
     {
       "id_order": "2",
       "id_customer_order_fk": "2",
-      "pizza_name_order_fk": "Nordique",
       "status": "En livraison",
       "payement_method": "Espéces",
       "delivery_mode": "Retrait en pizzeria",
@@ -61,7 +59,6 @@ data = {
     {
       "id_order": "3",
       "id_customer_order_fk": "3",
-      "pizza_name_order_fk": "Végétarienne",
       "status": "Livré",
       "payement_method": "Tickets restaurants",
       "delivery_mode": "Retrait en pizzeria",
@@ -72,15 +69,15 @@ data = {
   "ingredient": [
       {
         "ingredient_name": "Poulet",
-        "unit_ingredient": "Killogrammes"
+        "ingredient_description": "atomise en petits morceaux"
       },
       {
         "ingredient_name": "Haricots",
-        "unit_ingredient": "Grammes"
+        "ingredient_description": "de tchernobyl"
       },
       {
         "ingredient_name": "Caviar",
-        "unit_ingredient": "Litres"
+        "ingredient_description": "de la reine Elisabeth"
       }
 
     ],
@@ -160,6 +157,50 @@ data = {
         "id_address_restaurant_fk": "3",
         "id_role_restaurant_fk": "3",
         "name": "Pizzaria Ovnie"
+      }
+
+    ],
+
+  "pizza_order": [
+      {
+        "id_pizza_order": "1",
+        "pizza_name_fk": "Margarita",
+        "id_order_fk": "1"
+      },
+      {
+        "id_pizza_order": "2",
+        "pizza_name_fk": "Nordique",
+        "id_order_fk": "2"
+
+      },
+      {
+        "id_pizza_order": "3",
+        "pizza_name_fk": "Végétarienne",
+        "id_order_fk": "3"
+      }
+
+    ],
+
+  "restaurant_inventory": [
+      {
+        "id_restaurant_inventory": "1",
+        "ingredient_name_inventory_fk": "Poulet",
+        "id_restaurant_number_fk": "1",
+        "unit_ingredient": "Killogrammes"
+
+      },
+      {
+        "id_restaurant_inventory": "2",
+        "ingredient_name_inventory_fk": "Haricots",
+        "id_restaurant_number_fk": "2",
+        "unit_ingredient": "Grammes"
+
+      },
+      {
+        "id_restaurant_inventory": "3",
+        "ingredient_name_inventory_fk": "Caviar",
+        "id_restaurant_number_fk": "3",
+        "unit_ingredient": "Litres"
       }
 
     ]

@@ -4,7 +4,7 @@ mysql -u root -p
 
 Acces for launch the sql script 
 SOURCE C:/Users/Serjio/OCPython/oc_projet_p6/prod/my_sql_brench/create_database_ocpizza
-SOURCE C:/Users/Serjio/OCPython/oc_projet_p6/prod/my_sql_brench/test_sql_2.sql;
+SOURCE C:/Users/Serjio/OCPython/oc_projet_p6/Livrables/work_file/date_base/create_database_V1.sql;
 
 For Use the dump need to go at first: 
 set PATH=%PATH%;C:\"Program Files"\MySQL\"MySQL Server 5.6"\bin

@@ -91,26 +91,22 @@ class GenerateFakeData:
                     # customer_order => un objet contenant les données pizza
                     # Statement insert pizza
                     print(
-                        f"INSERT INTO Customer_order "
+                        f"INSERT INTO CustomerOrder "
                         f"(id_order, "
                         f"id_customer_order_fk, "
-                        f"pizza_name_order_fk,"
                         f"status, "
                         f"payement_method, "
                         f"delivery_mode, "
                         f"id_address_order_fk, "
-                        f"date, "
-                        f"pizza_quantity) "
+                        f"date) "
                         f"VALUES "
                         f"('{customer_order['id_order']}', "
                         f"'{customer_order['id_customer_order_fk']}', "
-                        f"'{customer_order['pizza_name_order_fk']}', "
                         f"'{customer_order['status']}', "
                         f"'{customer_order['payement_method']}', "
                         f"'{customer_order['delivery_mode']}', "
                         f"'{customer_order['id_address_order_fk']}', "
-                        f"'{self.fake.date()}', "
-                        f"'{randrange(1,17)}'); "
+                        f"'{self.fake.date()}'); "
                     )
 
     def fake_ingredient(self, data_number=3):
@@ -125,12 +121,10 @@ class GenerateFakeData:
                     print(
                         f"INSERT INTO Ingredient "
                         f"(ingredient_name, "
-                        f"unit_ingredient, "
-                        f"ingredient_inventory) "
+                        f"ingredient_description) "
                         f"VALUES "
                         f"('{ingredient['ingredient_name']}', "
-                        f"'{ingredient['unit_ingredient']}', "
-                        f"'{randrange(0,100)}'); "
+                        f"'{ingredient['ingredient_description']}'); "
                     )
 
     def fake_recipe(self, data_number=3):
@@ -219,11 +213,58 @@ class GenerateFakeData:
                         f"id_role_restaurant_fk,"
                         f"name) "
                         f"VALUES "
-                        f"('{restaurant['id_restaurant_number']}',"
+                        f"('{restaurant['id_restaurant_number']}', "
                         f"'{restaurant['id_address_restaurant_fk']}', "
                         f"'{restaurant['id_role_restaurant_fk']}', "
                         f"'{restaurant['name']}'); "
                     )
+
+    def fake_pizza_order(self):
+
+        for key, object in data.items():
+            # key => pizza, customer, address (nom des tables)
+            # list d'objet contenant chacun les données
+            if key == 'pizza_order':
+                for pizza_order in object:
+                    # pizza => un objet contenant les données pizza
+                    # Statement insert pizza
+                    print(
+                        f"INSERT INTO PizzaOrder "
+                        f"(id_pizza_order, "
+                        f"pizza_name_fk, "
+                        f"id_order_fk,"
+                        f"pizza_quantity) "
+                        f"VALUES "
+                        f"('{pizza_order['id_pizza_order']}', "
+                        f"'{pizza_order['pizza_name_fk']}', "
+                        f"'{pizza_order['id_order_fk']}', "
+                        f"'{randrange(1,10)}'); "
+                    )
+
+    def fake_restaurant_inventory(self):
+
+        for key, object in data.items():
+            # key => pizza, customer, address (nom des tables)
+            # list d'objet contenant chacun les données
+            if key == 'restaurant_inventory':
+                for restaurant_inventory in object:
+                    # pizza => un objet contenant les données pizza
+                    # Statement insert pizza
+                    print(
+                        f"INSERT INTO RestaurantInventory "
+                        f"(id_restaurant_inventory, "
+                        f"ingredient_name_inventory_fk, "
+                        f"id_restaurant_number_fk,"
+                        f"ingredient_inventory,"
+                        f"unit_ingredient) "
+                        f"VALUES "
+                        f"('{restaurant_inventory['id_restaurant_inventory']}', "
+                        f"'{restaurant_inventory['ingredient_name_inventory_fk']}', "
+                        f"'{restaurant_inventory['id_restaurant_number_fk']}', "
+                        f"'{randrange(1,10)}', "
+                        f"'{restaurant_inventory['unit_ingredient']}'); "
+                    )
+
 
 
 if __name__ == "__main__":
@@ -248,6 +289,10 @@ if __name__ == "__main__":
     generate_data.fake_role()
     print()
     generate_data.fake_restaurant()
+    print()
+    generate_data.fake_pizza_order()
+    print()
+    generate_data.fake_restaurant_inventory()
     print()
 
 
